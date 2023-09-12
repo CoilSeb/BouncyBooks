@@ -8,9 +8,13 @@ public class Platform : MonoBehaviour
     void Update()
     {
         // if the players position is greater than the platforms position, set platform collider to true
-        if (GameObject.Find("Player").transform.position.y > transform.position.y + 1)
+        if (GameObject.Find("Player").transform.position.y > transform.position.y + 0.75f)
         {
             GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else if(GameObject.Find("Player").transform.position.y < transform.position.y)
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }
