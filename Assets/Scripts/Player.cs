@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float jumpHeight = 10f;
-    public float movespeed = 10f;
+    public float jumpHeight = 20f;
+    public float movespeed = 15f;
     public Rigidbody2D rb;
 
     // function for when the object collides with anything, it applies velocity equal to jumpHeight
@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
         if (transform.position.y < Camera.main.transform.position.y - 10)
         {
             Destroy(gameObject);
-            Debug.Log("Game Over!");
         }
         
     }
