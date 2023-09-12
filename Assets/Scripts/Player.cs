@@ -32,9 +32,20 @@ public class Player : MonoBehaviour
             transform.position += Vector3.right * movespeed * Time.deltaTime;
         }
 
+        // if the player is moving up and the player is higher than the camera, move the camera up
         if(rb.velocity.y > 0 && transform.position.y > Camera.main.transform.position.y)
         {
             Camera.main.transform.position = new Vector3(0, transform.position.y, -10);
+        }
+
+        // if the players position is less than -20 or greater than 20 on the x axis (the bounds of the camera), the player is moved to the other side of the camera
+        if (transform.position.x < -20)
+        {
+            transform.position = new Vector3(20, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x > 20)
+        {
+            transform.position = new Vector3(-20, transform.position.y, transform.position.z);
         }
 
 // if the player drops lower than the camera, the game is over
