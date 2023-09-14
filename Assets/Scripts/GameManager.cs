@@ -6,16 +6,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject button;
-    public GameObject GameOverText;
+    public Image button;
+    public Text GameOverText;
     public Text buttonText;
     public void EndGame()
     {
         Debug.Log("Game Over");
 
-        if(Input.GetKey(KeyCode.Space))
-        {
-            SceneManager.LoadScene("Game");
-        }
+        GameOverText.text = "Game Over";
+        buttonText.text = "Play Again";
+        button.GetComponent<Image>().enabled = true;
     }
 }
