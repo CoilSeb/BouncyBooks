@@ -20,11 +20,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // check is self exists
-        if (gameObject == null)
-        {
-            return;
-        }
         // move the player left if A or the left arrow key is held down
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -56,7 +51,6 @@ public class Player : MonoBehaviour
 // if the player drops lower than the camera, the game is over
         if (transform.position.y < Camera.main.transform.position.y - 10)
         {
-            GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
             Destroy(gameObject);
 
             GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
@@ -64,6 +58,9 @@ public class Player : MonoBehaviour
             {
                 Destroy(platform);
             }
+
+            GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
+            
         }
         
     }

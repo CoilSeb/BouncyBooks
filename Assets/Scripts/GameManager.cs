@@ -1,24 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;    
+using UnityEngine.SceneManagement; 
+using UnityEngine.UI;  
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject button;
+    public GameObject GameOverText;
+    public Text buttonText;
     public void EndGame()
     {
         Debug.Log("Game Over");
-        // go to a new scene named GameOver
-        SceneManager.LoadScene("GameOver");
-        // if a button is pressed, restart the game
-        if (Input.anyKey)
-        {
-            Restart();
-        }
-    }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene("Game");
+        if(Input.GetKey(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 }
