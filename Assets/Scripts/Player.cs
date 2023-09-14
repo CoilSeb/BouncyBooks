@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check is self exists
+        if (gameObject == null)
+        {
+            return;
+        }
         // move the player left if A or the left arrow key is held down
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -39,19 +44,26 @@ public class Player : MonoBehaviour
         }
 
         // if the players position is less than -20 or greater than 20 on the x axis (the bounds of the camera), the player is moved to the other side of the camera
-        if (transform.position.x < -20)
+        if (transform.position.x < -18)
         {
-            transform.position = new Vector3(20, transform.position.y, transform.position.z);
+            transform.position = new Vector3(18, transform.position.y, transform.position.z);
         }
-        else if (transform.position.x > 20)
+        else if (transform.position.x > 18)
         {
-            transform.position = new Vector3(-20, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-18, transform.position.y, transform.position.z);
         }
 
 // if the player drops lower than the camera, the game is over
         if (transform.position.y < Camera.main.transform.position.y - 10)
         {
+            GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
             Destroy(gameObject);
+
+            GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+            foreach (GameObject platform in platforms)
+            {
+                Destroy(platform);
+            }
         }
         
     }

@@ -5,38 +5,32 @@ using UnityEngine;
 public class PlatformSpawner : MonoBehaviour
 {
     public GameObject platform;
+    private float distance = 0.1f;
+    private Vector3 lastPos = new Vector3(0,10f,0);
 
     // Start is called before the first frame update
     void Start()
     {
-        // starts a platform spawner function
-        StartCoroutine(SpawnPlatform());
+        for ( int i = -10; i < 10; i+=2){
+            Instantiate(platform, new Vector3(Random.Range(-20f, 20f), Camera.main.transform.position.y + Random.Range(i*1f,i+3f), 0), Quaternion.identity);
+        }
     }
     
-    // platform spawner function
-    IEnumerator SpawnPlatform()
-    {
-        // while the game is running, spawn a platform every 2 seconds
-        while (true)
+    void Update(){
+        SpawnPlatform();
+    }
+
+    void SpawnPlatform(){
+        if(distance >= 2.0f){
+            distance = 2.0f;
+        }
+
+        if(lastPos.y + distance < Camera.main.transform.position.y + 10f)
         {
-            // make the platforms spawn at a random value (between -20 and 20) above the camera
-            // the platforms only spawn when the cameras y value changes
-            if(Camera.main.transform.position.y < 250)
-            {
-                Instantiate(platform, new Vector3(Random.Range(-20, 20), Camera.main.transform.position.y + Random.Range(11,15), 0), Quaternion.identity);
-                Instantiate(platform, new Vector3(Random.Range(-20, 20), Camera.main.transform.position.y +  Random.Range(16,20), 0), Quaternion.identity);
-                yield return new WaitForSeconds(1f);
-            }
-            // else if(Camera.main.transform.position.y > 250 && Camera.main.transform.position.y < 500)
-            // {
-            //     Instantiate(platform, new Vector3(Random.Range(-20, 20), Camera.main.transform.position.y + 11, 0), Quaternion.identity);
-            //     yield return new WaitForSeconds(1.5f);
-            // }
-            // else
-            // {
-            //     Instantiate(platform, new Vector3(Random.Range(-20, 20), Camera.main.transform.position.y + 11, 0), Quaternion.identity);
-            //     yield return new WaitForSeconds(2f);
-            // }
+            lastPos = new Vector3(Random.Range(-20f, 20f), Camera.main.transform.position.y + 10f + distance, 0);
+
+            Instantiate(platform, lastPos, Quaternion.identity);
+            distance += 0.01f;
         }
     }
 }

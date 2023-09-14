@@ -16,5 +16,11 @@ public class Platform : MonoBehaviour
         {
             GetComponent<BoxCollider2D>().enabled = false;
         }
+
+        // if the platform is less than the camera, destroy the platform
+        if (transform.position.y < Camera.main.transform.position.y - 10)
+        {
+            Destroy(gameObject);
+        }
     }
 }
