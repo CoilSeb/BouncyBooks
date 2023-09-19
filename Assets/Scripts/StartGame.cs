@@ -1,20 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
+using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Button startButton;
+
     void Start()
     {
-        
+        startButton.onClick.AddListener(PlayGame);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.Space){
-            Application.LoadLevel("GameScene");
+        if(Input.GetKey(KeyCode.Space)){
+            PlayGame();
         }
+    }
+
+    public void PlayGame()
+    {
+        // load the game scene  
+        UnitySceneManager.LoadScene("Game");   
     }
 }
