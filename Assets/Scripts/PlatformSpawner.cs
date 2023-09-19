@@ -12,7 +12,7 @@ public class PlatformSpawner : MonoBehaviour
     void Start()
     {
         for ( int i = -10; i < 10; i+=2){
-            Instantiate(platform, new Vector3(Random.Range(-20f, 20f), Camera.main.transform.position.y + Random.Range(i*1f,i+3f), 0), Quaternion.identity);
+            Instantiate(platform, new Vector3(Random.Range(-8f, 8f), Camera.main.transform.position.y + Random.Range(i*1f,i+3f), 0), Quaternion.identity);
         }
     }
     
@@ -27,7 +27,7 @@ public class PlatformSpawner : MonoBehaviour
 
         if(lastPos.y + distance < Camera.main.transform.position.y + 10f)
         {
-            lastPos = new Vector3(Random.Range(-20f, 20f), Camera.main.transform.position.y + 10f + distance, 0);
+            lastPos = new Vector3(Random.Range(-8f, 8f), Camera.main.transform.position.y + 10f + distance, 0);
 
             Instantiate(platform, lastPos, Quaternion.identity);
             distance += 0.01f;

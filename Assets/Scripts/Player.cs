@@ -39,13 +39,13 @@ public class Player : MonoBehaviour
         }
 
         // if the players position is less than -20 or greater than 20 on the x axis (the bounds of the camera), the player is moved to the other side of the camera
-        if (transform.position.x < -18)
+        if (transform.position.x < -8)
         {
-            transform.position = new Vector3(18, transform.position.y, transform.position.z);
+            transform.position = new Vector3(8, transform.position.y, transform.position.z);
         }
-        else if (transform.position.x > 18)
+        else if (transform.position.x > 8)
         {
-            transform.position = new Vector3(-18, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-8, transform.position.y, transform.position.z);
         }
 
 // if the player drops lower than the camera, the game is over
