@@ -19,7 +19,19 @@ public class GameManager : MonoBehaviour
     }
     public void EndGame()
     {
-        Debug.Log("Game Over");
+        Destroy(GameObject.Find("Player"));
+
+        GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+        foreach (GameObject platform in platforms)
+        {
+            Destroy(platform);
+        }
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
 
         GameOverText.text = "Game Over";
         buttonText.text = "Press Space to Restart";

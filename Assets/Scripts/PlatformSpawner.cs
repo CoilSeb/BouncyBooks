@@ -16,11 +16,13 @@ public class PlatformSpawner : MonoBehaviour
         }
     }
     
-    void Update(){
+    void Update()
+    {
         SpawnPlatform();
     }
 
-    void SpawnPlatform(){
+    void SpawnPlatform()
+    {
         if(distance >= 2.0f){
             distance = 2.0f;
         }

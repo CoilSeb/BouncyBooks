@@ -51,16 +51,8 @@ public class Player : MonoBehaviour
 // if the player drops lower than the camera, the game is over
         if (transform.position.y < Camera.main.transform.position.y - 10)
         {
-            Destroy(gameObject);
-
-            GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-            foreach (GameObject platform in platforms)
-            {
-                Destroy(platform);
-            }
-
             GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
-            
+           
         }
         
     }
