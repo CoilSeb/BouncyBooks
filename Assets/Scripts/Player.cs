@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
         if (transform.position.y < Camera.main.transform.position.y - 10)
         {
             GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
-           
         }
         
     }
