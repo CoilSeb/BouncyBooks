@@ -70,13 +70,13 @@ public class Platform : MonoBehaviour
 
     void Start()
     {
-        if (transform.position.y < 50)
+        if (transform.position.y < 25)
         {
             platformType = PlatfromType.Normal;
         }
         else
         {
-            platformType = (PlatfromType)Random.Range(0, 4);
+            platformType = (PlatfromType)Random.Range(0, 6);
 
             if (platformType == PlatfromType.Fake)
             {

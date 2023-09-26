@@ -7,6 +7,7 @@ TagManager:
   - Platform
   - Enemy
   - FakePlatform
+  - Boost
   layers:
   - Default
   - TransparentFX

@@ -39,6 +39,12 @@ public class GameManager : MonoBehaviour
             Destroy(FakePlatform);
         }
 
+        GameObject[] Boosts = GameObject.FindGameObjectsWithTag("Boost");
+        foreach (GameObject Boost in Boosts)
+        {
+            Destroy(Boost);
+        }
+
         GameOverText.text = "Game Over";
         buttonText.text = "Press Space to Restart";
         restartButton.gameObject.SetActive(true);

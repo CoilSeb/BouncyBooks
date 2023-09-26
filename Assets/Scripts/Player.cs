@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float jumpHeight = 25f;
-    public float movespeed = 15f;
+    private float jumpHeight = 20f;
+    private float movespeed = 12f;
+    private float boost = 20f;
     public Rigidbody2D rb;
 
     // function for when the object collides with anything, it applies velocity equal to jumpHeight
@@ -14,6 +15,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+        }
+        if (collision.gameObject.tag == "Boost")
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpHeight + boost);
         }
     }
     
@@ -38,7 +43,7 @@ public class Player : MonoBehaviour
             Camera.main.transform.position = new Vector3(0, transform.position.y, -10);
         }
 
-        // if the players position is less than -20 or greater than 20 on the x axis (the bounds of the camera), the player is moved to the other side of the camera
+        // if the players position is less than -8 or greater than 8 on the x axis (the bounds of the camera), the player is moved to the other side of the camera
         if (transform.position.x < -8)
         {
             transform.position = new Vector3(8, transform.position.y, transform.position.z);
