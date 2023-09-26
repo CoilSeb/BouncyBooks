@@ -6,8 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public GameObject platform;
     public GameObject enemy;
-    private float platformDistance = 0.5f;
-    private float enemyDistance = 400f;
+    private float platformDistance = 0.3f;
+    private float enemyDistance = 250f;
     private Vector3 lastPos = new Vector3(0,10f,0);
     private Vector3 enemyLastPos = new Vector3(0,10f,0);
 
@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
             lastPos = new Vector3(Random.Range(-8f, 8f), Camera.main.transform.position.y + 10f + platformDistance, 0);
 
             Instantiate(platform, lastPos, Quaternion.identity);
-            platformDistance += 0.005f;
+            platformDistance += 0.0025f;
         }
     }
 
@@ -59,7 +59,8 @@ public class Spawner : MonoBehaviour
             enemyLastPos = new Vector3(Random.Range(-8f, 8f), Camera.main.transform.position.y + 10f, 0);
 
             Instantiate(enemy, enemyLastPos, Quaternion.identity);
-            enemyDistance -= 100f;
+            enemyDistance -= 75f;
+            enemy.GetComponent<Enemy>().movespeed = Random.Range(1f, 5f);
         }
     }
 }

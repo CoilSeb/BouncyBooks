@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
             Destroy(enemy);
         }
 
+        GameObject[] FakePlatforms = GameObject.FindGameObjectsWithTag("FakePlatform");
+        foreach (GameObject FakePlatform in FakePlatforms)
+        {
+            Destroy(FakePlatform);
+        }
+
         GameOverText.text = "Game Over";
         buttonText.text = "Press Space to Restart";
         restartButton.gameObject.SetActive(true);
