@@ -22,14 +22,6 @@ public class Spawner : MonoBehaviour
         // set the cameraLastPos to the camera's current position
         cameraLastPos = Camera.main.transform.position;
     }
-
-    // Start is called before the first frame update
-    // void Start()
-    // {
-    //     for ( int i = -10; i < 10; i+=2){
-    //         Instantiate(platform, new Vector3(Random.Range(-8f, 8f), Camera.main.transform.position.y + Random.Range(i*1f,i+3f), 0), Quaternion.identity);
-    //     }
-    // }
     
     void Update()
     {
@@ -63,11 +55,7 @@ public class Spawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        // If the camera's y position is less than 100, don't spawn enemies
-        // if (Camera.main.transform.position.y < 100f)
-        // {
-        //     return;
-        // }
+
 
         if (enemyDistance <= 100f)
         {
