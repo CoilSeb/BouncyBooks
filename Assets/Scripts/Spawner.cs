@@ -46,7 +46,7 @@ public class Spawner : MonoBehaviour
             int rand = Random.Range(1, 21);
             if (rand == 20) 
             {
-                Instantiate(boost, lastPos + Vector3.up * 0.5f, Quaternion.identity);
+                Instantiate(boost, lastPos + Vector3.up * 0.4f, Quaternion.identity);
             }
             platformDistance += 0.0025f;
         }
