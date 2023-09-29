@@ -27,7 +27,6 @@ public class Spawner : MonoBehaviour
     {
         SpawnPlatform();
         SpawnEnemy();
-        MoveBG();
     }
 
     void SpawnPlatform()
@@ -69,31 +68,6 @@ public class Spawner : MonoBehaviour
             Instantiate(enemy, enemyLastPos, Quaternion.identity);
             enemyDistance -= 75f;
             enemy.GetComponent<Enemy>().movespeed = Random.Range(1f, 5f);
-        }
-    }
-    // a void function that moves the lowest bg to the top when the bg is lower than the cameras y position - 10
-    void MoveBG()
-    {
-        float bgSpeed = 0f;
-        
-        // check if the camera's y position is greater than the cameraLastPos y position
-        if (Camera.main.transform.position.y > cameraLastPos.y)
-        {
-            bgSpeed = 0f + (Camera.main.transform.position.y - cameraLastPos.y) / Time.deltaTime;
-            // if it is, move the cameraLastPos to the camera's current position
-            cameraLastPos = Camera.main.transform.position;
-        }
-        
-        bg0.transform.position -= Vector3.up * bgSpeed * Time.deltaTime;
-        bg1.transform.position -= Vector3.up * bgSpeed * Time.deltaTime;
-
-        if (bg0.transform.position.y + 10 < Camera.main.transform.position.y - 10)
-        {
-            bg0.transform.position = bg1.transform.position + Vector3.up * 20;
-        }
-        else if (bg1.transform.position.y + 10 < Camera.main.transform.position.y - 10)
-        {
-            bg1.transform.position = bg0.transform.position + Vector3.up * 20;
         }
     }
 }

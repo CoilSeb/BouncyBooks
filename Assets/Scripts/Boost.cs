@@ -7,7 +7,7 @@ public class Boost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("Player").transform.position.y > transform.position.y + 0.1f)
+        if (GameObject.Find("Player").transform.position.y > transform.position.y + 0.75f)
         {
             GetComponent<BoxCollider2D>().enabled = true;
         }

@@ -16,9 +16,15 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
         }
+
         if (collision.gameObject.tag == "Boost")
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight + boost);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
         }
     }
     

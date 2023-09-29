@@ -45,9 +45,6 @@ public class GameManager : MonoBehaviour
             Destroy(Boost);
         }
 
-        Destroy(GameObject.Find("BG0"));
-        Destroy(GameObject.Find("BG1"));
-
         GameOverText.text = "Game Over";
         buttonText.text = "Press Space to Restart";
         restartButton.gameObject.SetActive(true);
