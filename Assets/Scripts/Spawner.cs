@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
 
         if(lastPos.y + platformDistance < Camera.main.transform.position.y + 10f)
         {
-            lastPos = new Vector3(Random.Range(-8f, 8f), Camera.main.transform.position.y + 10f + platformDistance, 0);
+            lastPos = new Vector3(Random.Range(-6f, 6f), Camera.main.transform.position.y + 10f + platformDistance, 0);
 
 
             Instantiate(platform, lastPos, Quaternion.identity);
@@ -63,7 +63,7 @@ public class Spawner : MonoBehaviour
 
         if (enemyLastPos.y + enemyDistance < Camera.main.transform.position.y + 10f)
         {
-            enemyLastPos = new Vector3(Random.Range(-8f, 8f), Camera.main.transform.position.y + 10f, 0);
+            enemyLastPos = new Vector3(Random.Range(-6f, 6f), Camera.main.transform.position.y + 10f, 0);
 
             Instantiate(enemy, enemyLastPos, Quaternion.identity);
             enemyDistance -= 75f;

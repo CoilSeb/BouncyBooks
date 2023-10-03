@@ -40,7 +40,7 @@ public class Platform : MonoBehaviour
         if(moveRight)
         {
             transform.position += Vector3.right * movespeed * Time.deltaTime;
-            if (transform.position.x > 6.5f)
+            if (transform.position.x > 5.5f)
             {
                 moveRight = false;
             }
@@ -48,7 +48,7 @@ public class Platform : MonoBehaviour
         else
         {
             transform.position += Vector3.left * movespeed * Time.deltaTime;
-            if (transform.position.x < -6.5f)
+            if (transform.position.x < -5.5f)
             {
                 moveRight = true;
             }
