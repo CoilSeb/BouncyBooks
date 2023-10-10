@@ -7,21 +7,11 @@ public class Spawner : MonoBehaviour
     public GameObject platform;
     public GameObject enemy;
     public GameObject boost;
-    public GameObject bg0;
-    public GameObject bg1;
     public GameObject player;
     private float platformDistance = 0.1f;
     private float enemyDistance = 100f;
     private Vector3 lastPos = new Vector3(0,10f,0);
     private Vector3 enemyLastPos = new Vector3(0,10f,0);
-    
-    // varaible to store the last position of the platform
-    private Vector3 cameraLastPos = new Vector3(0, 0, 0);
-
-    void Start(){
-        // set the cameraLastPos to the camera's current position
-        cameraLastPos = Camera.main.transform.position;
-    }
     
     void Update()
     {
