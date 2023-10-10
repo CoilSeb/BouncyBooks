@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Image button;
     public Text GameOverText;
     public Text buttonText;
     public Button restartButton;

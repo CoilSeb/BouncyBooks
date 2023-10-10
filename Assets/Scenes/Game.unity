@@ -475,8 +475,6 @@ MonoBehaviour:
   platform: {fileID: 8192084878674554390, guid: 89ec4bc9c54526e7e929b79cc7a26667, type: 3}
   enemy: {fileID: 8532950152074158634, guid: 2eb365c8b50aafa47a29979b8e914a02, type: 3}
   boost: {fileID: 1713118038954011886, guid: ed7b72d886477290d9ef6ff8acc9903d, type: 3}
-  bg0: {fileID: 0}
-  bg1: {fileID: 0}
   player: {fileID: 1315381718}
 --- !u!1 &726316620
 GameObject:
@@ -769,7 +767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95bb689602c98ddab890cf3979dec28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 460743168}
   GameOverText: {fileID: 726316622}
   buttonText: {fileID: 488396619}
   restartButton: {fileID: 460743167}

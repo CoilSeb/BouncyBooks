@@ -3,9 +3,8 @@
 * Platform / Platform Spawner
 * Score
 * Game Over
-* Start Menu
 
-# Camera
+## Camera
 * Select the `Camera` and change the `Size` to 10
 * Copy and paste our platform at least twice
 * In the Player script, add the following code to the `Update` function:
@@ -16,7 +15,7 @@
     }
 ```
 
-# Platform
+## Platform
 * Create a new script called `Platform`
 * Create a `Prefabs` folder
 * Drag the `Platform` into the `Prefabs` folder
@@ -51,7 +50,7 @@
     }
 ```
 
-# Spawner
+## Spawner
 * Create a new game object called `Spawner`
 * Create a new script called `Spawner`
 * We want to create new platforms at the top of the camera
@@ -85,16 +84,121 @@
     }
 ```
 
-# Score
+## Score
+* Set the game aspect ratio to `16:9`
+# Fixing Canvas / Adding Borders
 * Create a new `Canvas`
 * Change `UI Scale Mode` to `Scale With Screen Size`
 * Change `Reference Resolution` to `1920 x 1080`
 * Change `Screen Match Mode` to `Shrink`
 * Add a new `RawImage` called `Border`
 * Set the color to black, height to `1080` and width to `1920/3`
-* Set the game aspect ratio to `16:9`
 * Change the platform prefab to a width of `3`
+# Creating Score
 * Right click on `Canvas` and add a new `Legacy: Text` named `Score`
 * Double click canvas to put it into view
-* Resize the score text box, set the font to 52pt, change the text to `0`, set the text color to white
+* Resize the score text box, set the font to 78pt, change the text to `0`, set the text color to white, middle align
 * Add a new script to Score called `Score`
+* Add these variables to gain access to the players transform and the text of the score
+```cs
+    public Transform Player;
+    public Text scoreText;
+```
+* Edit the `Update` function to change the text as the players y position rises
+```cs
+    void Update()
+    {
+        // if the player does not exist, do nothing
+        if(Player == null)
+        {
+            return;
+        }
+        // if the players position is > scoreText, change the scoreText to the playres position
+        if (float.Parse(scoreText.text) < Player.position.y /* * 10*/)
+        {
+            scoreText.text = (Player.position.y /* * 10*/).ToString("0");
+        }
+
+    }
+```
+
+## Game Over
+# Adding Game Over Text
+* Create a new `Legacy: Text` named `GameOver`
+* Resize the textbox, set the text to ``, size 78, white color, middle align
+* Create a new game object with `Create Empty` called `GameManager`
+* Add a script to it called `GameManager`
+* Add the following variables to the script
+* Add this to the libraraies at the top so that we can use them
+```cs
+using UnityEngine.SceneManagement; 
+using UnityEngine.UI;  
+```
+* Add the following variables 
+```cs
+    public Text GameOverText;
+    public GameObject player;
+```
+* Add a function `EndGame` that destroys the player, destroys all platforms and displays `Game Over`
+```cs 
+    public void EndGame()
+    {
+        Destroy(GameObject.Find("Player"));
+
+        GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+        foreach (GameObject platform in platforms)
+        {
+            Destroy(platform);
+        }
+
+        GameOverText.text = "Game Over";
+    }
+```
+# Adding Restart Mechanic/Button
+* Create a new `Legacy: Button` called `RestartButton`
+* Resize 
+* Add a new `Legacy: Text` to RestartButton called `RestartText`
+* Resize the text box, set the font to 52pt, change the text to ``, set the text color to black, middle align
+* Update the GameManager script to activate the button upon death
+```cs
+    public Text buttonText;
+    public Button restartButton;
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void Start()
+    {
+        restartButton.onClick.AddListener(RestartGame);
+        restartButton.gameObject.SetActive(false);
+    }
+```
+* Edit the EndGame function to include the following script
+```cs
+    buttonText.text = "Press Space to Restart";
+    restartButton.gameObject.SetActive(true);
+```
+* Add the following code to the Update function so that we can press space to restart the game
+```cs
+    // if the player no longer exist
+    if(player == null)
+    {
+        // if the player presses space
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // call our restart function
+            RestartGame();
+        }
+    }
+```
+# Adding the destruction of the player
+* Add the following code to the player script
+```cs
+    // if the player drops lower than the camera, the game is over
+    if (transform.position.y < Camera.main.transform.position.y - 10) 
+    {
+        GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
+    }
+```
