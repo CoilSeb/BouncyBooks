@@ -94,6 +94,20 @@
 * Add a new `RawImage` called `Border`
 * Set the color to black, height to `1080` and width to `1920/3`
 * Change the platform prefab to a width of `3`
+# Adding screen-wrap
+* Add the following code to the player scripts update function
+```cs
+    // if the players position is less than -6.5 or greater than 6.15 on the x axis (the bounds of the camera), the player is moved to the other side of the camera
+    if (transform.position.x < -6.15f)
+    {
+        transform.position = new Vector3(6.15f, transform.position.y, transform.position.z);
+    }
+    else if (transform.position.x > 6.15f)
+    {
+        transform.position = new Vector3(-6.15f, transform.position.y, transform.position.z);
+    }
+```
+
 # Creating Score
 * Right click on `Canvas` and add a new `UI: Legacy: Text` named `Score`
 * Double click canvas to put it into view
