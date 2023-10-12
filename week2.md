@@ -158,7 +158,7 @@ using UnityEngine.UI;
     }
 ```
 # Adding the destruction of the player
-* Add the following code to the player script
+* Add the following code to the player script in the update function
 ```cs
     // if the player drops lower than the camera, the game is over
     if (transform.position.y < Camera.main.transform.position.y - 10) 
