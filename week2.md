@@ -107,7 +107,6 @@
         transform.position = new Vector3(-6.15f, transform.position.y, transform.position.z);
     }
 ```
-
 # Creating Score
 * Right click on `Canvas` and add a new `UI: Legacy: Text` named `Score`
 * Double click canvas to put it into view
