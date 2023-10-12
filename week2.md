@@ -134,7 +134,7 @@
 using UnityEngine.SceneManagement; 
 using UnityEngine.UI;  
 ```
-* Add the following variables 
+* Add the following variables and drag them into the script within Unity
 ```cs
     public Text GameOverText;
     public GameObject player;
@@ -160,6 +160,7 @@ using UnityEngine.UI;
 * Add a new `Legacy: Text` to RestartButton called `RestartText`
 * Resize the text box, set the font to 52pt, change the text to ``, set the text color to black, middle align
 * Update the GameManager script to activate the button upon death
+* Add the following variables and drag them into the script within Unity
 ```cs
     public Text buttonText;
     public Button restartButton;
