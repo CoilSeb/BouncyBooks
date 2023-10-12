@@ -95,10 +95,14 @@
 * Set the color to black, height to `1080` and width to `1920/3`
 * Change the platform prefab to a width of `3`
 # Creating Score
-* Right click on `Canvas` and add a new `Legacy: Text` named `Score`
+* Right click on `Canvas` and add a new `UI: Legacy: Text` named `Score`
 * Double click canvas to put it into view
 * Resize the score text box, set the font to 78pt, change the text to `0`, set the text color to white, middle align
 * Add a new script to Score called `Score`
+* Add this to the libraraies at the top so that we can use them
+```cs
+using UnityEngine.UI;  
+```
 * Add these variables to gain access to the players transform and the text of the score
 ```cs
     public Transform Player;
@@ -124,11 +128,10 @@
 
 ## Game Over
 # Adding Game Over Text
-* Create a new `Legacy: Text` named `GameOver`
+* Create a new `UI: Legacy: Text` named `GameOver` to your canvas
 * Resize the textbox, set the text to ``, size 78, white color, middle align
-* Create a new game object with `Create Empty` called `GameManager`
+* Create a new game object in your scene with `Create Empty` called `GameManager`
 * Add a script to it called `GameManager`
-* Add the following variables to the script
 * Add this to the libraraies at the top so that we can use them
 ```cs
 using UnityEngine.SceneManagement; 
@@ -143,7 +146,7 @@ using UnityEngine.UI;
 ```cs 
     public void EndGame()
     {
-        Destroy(GameObject.Find("Player"));
+        Destroy(player);
 
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
         foreach (GameObject platform in platforms)
@@ -154,10 +157,19 @@ using UnityEngine.UI;
         GameOverText.text = "Game Over";
     }
 ```
+# Adding the destruction of the player
+* Add the following code to the player script
+```cs
+    // if the player drops lower than the camera, the game is over
+    if (transform.position.y < Camera.main.transform.position.y - 10) 
+    {
+        GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
+    }
+```
 # Adding Restart Mechanic/Button
-* Create a new `Legacy: Button` called `RestartButton`
+* Create a new `UI: Legacy: Button` called `RestartButton` to your canvas
 * Resize 
-* Add a new `Legacy: Text` to RestartButton called `RestartText`
+* Rename the text to `RestartText`
 * Resize the text box, set the font to 52pt, change the text to ``, set the text color to black, middle align
 * Update the GameManager script to activate the button upon death
 * Add the following variables and drag them into the script within Unity
@@ -192,14 +204,5 @@ using UnityEngine.UI;
             // call our restart function
             RestartGame();
         }
-    }
-```
-# Adding the destruction of the player
-* Add the following code to the player script
-```cs
-    // if the player drops lower than the camera, the game is over
-    if (transform.position.y < Camera.main.transform.position.y - 10) 
-    {
-        GameObject.Find("GameManager").GetComponent<GameManager>().EndGame();
     }
 ```

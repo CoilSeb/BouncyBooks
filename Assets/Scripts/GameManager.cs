@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndGame()
     {
-        Destroy(GameObject.Find("Player"));
+        Destroy(player);
 
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
         foreach (GameObject platform in platforms)
