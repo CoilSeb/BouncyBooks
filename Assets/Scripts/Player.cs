@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     private float movespeed = 12f;
     private float boost = 20f;
     public Rigidbody2D rb;
+    public AudioSource audioSource;
+    public AudioClip jumpSound1;
+    public AudioClip jumpSound2;
 
     // function for when the object collides with anything, it applies velocity equal to jumpHeight
     void OnCollisionEnter2D(Collision2D collision)
@@ -15,6 +18,18 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+            int rand = Random.Range(0, 2);
+
+            if(rand == 0)
+            {
+                audioSource.clip = jumpSound1;
+            }
+            else
+            {
+                audioSource.clip = jumpSound2;
+            }
+
+            audioSource.Play();
         }
 
         if (collision.gameObject.tag == "Boost")
